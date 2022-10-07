@@ -1,3 +1,6 @@
+// credits
+// inverse kinematics referenced from The Coding Train
+
 title = "Hungry Frog";
 
 description = `[Hold] to Eat
