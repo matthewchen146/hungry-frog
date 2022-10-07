@@ -309,7 +309,7 @@ function update() {
         life = 100;
         maxEnergy = 10;
         energy = maxEnergy;
-        maxTongueLength = 20;
+        maxTongueLength = 30;
         tongueLength = 0;
         bugs = [];
         frog.caughtBug = undefined;
@@ -322,26 +322,17 @@ function update() {
     if (input.isJustPressed) {
         play('synth', {
             freq: 400,
-            // pitch: 20 + (energy / maxEnergy) * 50,
             volume: .2,
         });
     }
 
     if (input.isPressed) {
         
-        
-
-        // if (!frog.isMouthOpen) {
-        //     play('synth', {
-        //         pitch: (energy / maxEnergy) * 100,
-        //         volume: .3,
-        //     });
-        // }
 
         let targetLength = maxTongueLength * (energy / maxEnergy);
 
         if (extendY < targetLength) {
-            extendY += (targetLength - extendY) * .3;
+            extendY += (targetLength - extendY) * .2;
         } else {
             extendY = targetLength;
         }
@@ -392,7 +383,6 @@ function update() {
 
     // catch bug
     if (!frog.caughtBug) {
-        // console.log(frog.isMouthOpen);
         if (frog.isMouthOpen) {
             for (let bug of bugs) {
                 if (bug.pos.distanceTo(frog.tongueTipPos) < 3 && !frog.caughtBug) {
@@ -452,7 +442,7 @@ function update() {
 
     // drains
     if (life > 0) {
-        life -= .05 * difficulty;
+        life -= .04 * difficulty;
     } else {
         play('explosion');
         end();
